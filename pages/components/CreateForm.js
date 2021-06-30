@@ -1,19 +1,8 @@
 
-export default function Form({ setformResult }) {
-    function handler(e) {
-        e.preventDefault()
-        console.log()
-        let result = JSON.stringify({
-            "Location": e.target.location.value,
-            "Minimum customers per hour": e.target.min.value,
-            "Maximum customers per hour": e.target.max.value,
-            "Avrage cookies per hour": e.target.avg.value
-        })
-        setformResult(result)
-    }
+export default function CreateForm({ onCreate }) {
 
     return (<>
-        <form onSubmit={handler} className="items-center w-full h-full bg-green-300 border-t ">
+        <form onSubmit={onCreate} className="items-center w-full h-full bg-green-300 border-t ">
             <h1 className="m-4">Create Cookie Stand</h1>
 
             <label>Location</label>

@@ -1,14 +1,23 @@
 import Head from 'next/head'
 import Header from './components/Header'
-import Form from './components/Form'
-import Dashboard from './components/Dashboard'
+import CreateForm from './components/CreateForm'
+import ReportTable from './components/ReportTable'
 import Footer from './components/Footer'
 
 import { useState } from 'react'
 
 export default function Home() {
-  const [formResult, setformResult] = useState("No cookie stands, Create one!")
-
+  const [reports, setreports] = useState()
+  const data = require('../public/data')
+  function onCreate(e) {
+    e.preventDefault()
+    console.log()
+    let result = JSON.stringify({
+        "Location": e.target.location.value,
+        "hourly_sales":[48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
+    })
+    setreports(result)
+}
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-green-100">
       <Head>
@@ -16,8 +25,8 @@ export default function Home() {
       </Head>
       <Header/>
       <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
-          <Form  setformResult={setformResult}/>
-          <Dashboard formResult={formResult}/>
+          <CreateForm  onCreate={onCreate} />
+          <ReportTable hours={data.hours}  reports={reports}/>
       </main>
       <Footer/>
     </div>
