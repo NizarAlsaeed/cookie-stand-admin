@@ -7,16 +7,15 @@ import Footer from './components/Footer'
 import { useState } from 'react'
 
 export default function Home() {
-  const [reports, setreports] = useState()
+  const [reports, setreports] = useState([])
   const data = require('../public/data')
   function onCreate(e) {
     e.preventDefault()
-    console.log()
     let result = JSON.stringify({
         "Location": e.target.location.value,
         "hourly_sales":[48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
     })
-    setreports(result)
+    setreports([...reports, {id:reports.length,result}])
 }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-green-100">
