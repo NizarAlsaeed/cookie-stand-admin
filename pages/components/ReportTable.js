@@ -1,7 +1,7 @@
 export default function ReportTable(props) {
-  let hours = props.hours.map((hour) => <th>{hour}</th>)
+  let hours = props.hours && props.hours.map((hour) => <th>{hour}</th>)
 
-  let reports = props.reports.map((obj) => JSON.parse(obj.result)) || []
+  let reports = props.reports && props.reports.map((obj) => JSON.parse(obj.result)) || []
   console.log(reports)
   return (
     <table className="table ">
